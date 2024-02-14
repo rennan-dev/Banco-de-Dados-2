@@ -1,0 +1,37 @@
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #000000;
+    z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo da página */
+}
+
+/* Estilos para o menu */
+#menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+#menu .user-info {
+    display: flex;
+    align-items: center;
+}
+
+#menu .user-info span {
+    margin-right: 10px;
+}
+
+#menu .logout {
+    color: #fff;
+    text-decoration: none;
+    margin: 8px;
+    font-size: 14pt;
+} 
+
+header span {
+    margin: 8px;
+    font-size: 18pt;
+}

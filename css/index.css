@@ -1,0 +1,26 @@
+.row {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço igualmente entre as colunas */
+}
+
+.column {
+    width: 48%; /* Cada coluna ocupará cerca de metade da largura da tela, com espaço entre elas */
+}
+
+/* Define o estilo dos cards */
+.card {
+    width: 80%; /* Define a largura dos cards para ocupar todo o espaço disponível na coluna */
+    padding: 30px;
+    margin: 15px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+} 
+
+main h2 {
+    font-size: 15pt;
+}
+
+
