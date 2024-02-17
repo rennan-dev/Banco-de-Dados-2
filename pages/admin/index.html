@@ -7,29 +7,81 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/index.css">
     <link rel="stylesheet" href="../../css/barra-superior.css">
+    <link rel="stylesheet" href="../../css/barra-lateral.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../css/admin/laboratorio.css">
 </head>
 <body class="centralize">
 
     <header>
         <nav id="menu">
             <div class="user-info">
-                <span id="user-name">Admin</span>
+                <span>Lab Controle</span>
             </div>
             <a onclick="logout()" class="logout">Sair</a>
         </nav>
     </header>
 
+    <!--Barra lateral Start-->
+    <nav class="sidebar close">
+    <div class="header-sidebar">
+        <div class="image-text">
+            <div class="text logo-text">
+                <span>Admin</span>
+            </div>
+        </div>
+        <i class='bx bx-chevron-right toggle'></i>
+    </div>
+    <div class="menu-bar">
+        <div class="menu">
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="index.html">
+                        <i class='bx bx-home-alt icon' ></i>
+                        <span class="text nav-text">Principal</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-bell icon'></i>
+                        <span class="text nav-text">Avisos</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-lock-alt icon' ></i>
+                        <span class="text nav-text">Alterar Senha</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-trash icon' ></i>
+                        <span class="text nav-text">Excluir Usuário</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <!--Barra lateral End-->
+
     <main class="main-content">
-        <div class="row"> <!-- Envolve as duas colunas -->
+
+        <div class="card-labs">
+            <h1>Laboratórios Cadastrados</h1>
+            <ul id="lista-laboratorios">
+                <!-- Aqui será preenchido com os laboratórios -->
+            </ul>
+        </div>
+
+
+        <div class="row">
             <div class="column">
                 <div class="card" id="adicionarLaboratorio">
                     <h2>Adicionar Laboratório</h2>
                 </div>
                 <div class="card" id="bloquearLaboratorio">
                     <h2>Bloquear Laboratório</h2>
-                </div>
-                <div class="card" id="alterarSenha">
-                    <h2>Alterar Senha</h2>
                 </div>
             </div>
             <div class="column">
@@ -38,9 +90,6 @@
                 </div>
                 <div class="card" id="desbloquearLaboratorio">
                     <h2>Desbloquear Laboratório</h2>
-                </div>
-                <div class="card" id="apagarUsuario">
-                    <h2>Apagar Usuário</h2>
                 </div>
             </div>
         </div>
@@ -52,6 +101,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="../../scripts/firebase-init.js"></script>
     <script src="../../scripts/barra-superior.js"></script>
+    <script src="../../scripts/barra-lateral.js"></script>
     <script src="../../scripts/admin_cards.js"></script>
+    <script src="../../scripts/admin/mostrar_labs.js"></script>
 </body>
 </html>

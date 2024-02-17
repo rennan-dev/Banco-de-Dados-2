@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Gerente</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/barra-superior.css">
     <link rel="stylesheet" href="../../css/barra-lateral.css">
@@ -14,18 +14,18 @@
     <header>
         <nav id="menu">
             <div class="user-info">
-                <span id="user-name">Admin</span>
+                <span>Lab Controle</span>
             </div>
             <a onclick="logout()" class="logout">Sair</a>
         </nav>
     </header>
-    
+
     <!--Barra lateral Start-->
     <nav class="sidebar close">
         <div class="header-sidebar">
             <div class="image-text">
                 <div class="text logo-text">
-                    <span>Admin</span>
+                    <span id="user-name">Nome do Usuário</span>
                 </div>
             </div>
             <i class='bx bx-chevron-right toggle'></i>
@@ -37,6 +37,12 @@
                         <a href="index.html">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Principal</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-time icon' ></i>
+                            <span class="text nav-text">Histórico Lab(s)</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -54,7 +60,7 @@
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-trash icon' ></i>
-                            <span class="text nav-text">Excluir Usuário</span>
+                            <span class="text nav-text">Apagar Conta</span>
                         </a>
                     </li>
                 </ul>
@@ -62,19 +68,22 @@
         </div>
         </nav>
         <!--Barra lateral End-->
-        
+    
     <main>
         <div class="card">
-            <h1>Adicionar Laboratório</h1>
+            <h1>Entreagar Chave</h1>
     
-            <form id="add-lab">
+            <form id="entregar-chave">
                 <label for="sala">Sala:</label><br>
                 <input type="number" name="sala" id="sala"><br><br>
     
                 <label for="bloco">Bloco:</label><br>
                 <input type="text" name="bloco" id="bloco"><br><br>
+
+                <label for="email">E-mail:</label><br>
+                <input type="text" id="email"><br><br>
     
-                <button type="submit" class="enviar" id="botao-add-lab">Adicionar</button><br>
+                <button type="submit" class="enviar" id="botao-entregar-chave">Entregar</button><br>
             </form>
         </div>
     </main>
@@ -86,7 +95,7 @@
     <script src="../../scripts/firebase-init.js"></script>
     <script src="../../scripts/barra-superior.js"></script>
     <script src="../../scripts/barra-lateral.js"></script>
-    <script src="../../scripts/admin_cards.js"></script>
-    <script src="../../scripts/admin/add-lab.js"></script>
+    <script src="../../scripts/gerente/gerente_cards.js"></script>
+    <script src="../../scripts/gerente/entregar_chave.js"></script>
 </body>
 </html>

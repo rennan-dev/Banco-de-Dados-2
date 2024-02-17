@@ -67,43 +67,12 @@ function validatePassword(password, minDigits){
     return 1;
 }
 
-/*
 function register() {
     showLoading();
 
-    const name = nameInput.value; // Obtém o valor do campo de nome
-    const email = emailInput.value; // Obtém o valor do campo de e-mail
-    const password = passwordInput.value; // Obtém o valor do campo de senha
-    const typeAccount = accountType.value;
-
-    // Exibe um alerta com todas as informações coletadas
-    const alertMessage = `Nome: ${name}\nEmail: ${email}\nSenha: ${password}\nTipo de Conta: ${typeAccount}`;
-    alert(alertMessage);
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Atualiza o perfil do usuário
-            return userCredential.user.updateProfile({
-                displayName: name,
-                accountType: typeAccount
-                
-            });
-        })
-        .then(() => {
-            hideLoading();
-            window.location.href = "../pages/usuario/index.html";
-        })
-        .catch((error) => {
-            hideLoading();
-            alert(getErrorMessage(error));
-        });
-}*/
-function register() {
-    showLoading();
-
-    const name = nameInput.value; // Obtém o valor do campo de nome
-    const email = emailInput.value; // Obtém o valor do campo de e-mail
-    const password = passwordInput.value; // Obtém o valor do campo de senha
+    const name = nameInput.value; 
+    const email = emailInput.value; 
+    const password = passwordInput.value; 
     const typeAccount = accountType.value;
 
     firebase.auth().createUserWithEmailAndPassword(email, password)

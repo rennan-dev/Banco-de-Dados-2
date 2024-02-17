@@ -1,3 +1,7 @@
+main {
+    margin-top: 100px;
+}
+
 .row {
     display: flex;
     justify-content: space-between; /* Distribui o espaço igualmente entre as colunas */
@@ -9,18 +13,103 @@
 
 /* Define o estilo dos cards */
 .card {
-    width: 80%; /* Define a largura dos cards para ocupar todo o espaço disponível na coluna */
+    width: 100%; /* Define a largura dos cards para ocupar todo o espaço disponível na coluna */
+    max-height: 100px;
+    padding: 40px;
+    margin: 15px auto;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex; /* Utilize flexbox para alinhar verticalmente */
+    text-align: center;
+    align-items: center; /* Centralize verticalmente */
+}
+
+
+.card-labs {
+    width: 700px; /* Mantenha a largura desejada */
+    margin: 100px auto; /* Ajuste a margem para centralizar verticalmente e mover para a esquerda */
     padding: 30px;
-    margin: 15px;
     text-align: center;
     background-color: #f2f2f2;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-} 
+}
+
+
+
+.card-labs #lista-laboratorios {
+    max-height: 150px; /* Defina o limite de altura desejado */
+    overflow-y: auto; /* Habilita a rolagem vertical */
+}
 
 main h2 {
     font-size: 15pt;
 }
 
 
+/*Postagens*/
+.post-form {
+    width: 80%; /* Largura do formulário */
+    max-width: 700px; /* Largura máxima do formulário */
+    margin: 0 auto; /* Centralizar horizontalmente */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.post-form h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#post-content {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    resize: vertical; /* Permite redimensionar verticalmente o textarea */
+}
+
+#btn-post {
+    width: 100%; /* Botão de largura total */
+    background-color: #695cfe;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btn-post:hover {
+    background-color: #574cc2;
+}
+
+.postagem {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.postagem .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.postagem .info .usuario {
+    font-weight: bold;
+}
+
+.postagem .info .data {
+    font-size: 0.8em;
+    color: #666;
+}

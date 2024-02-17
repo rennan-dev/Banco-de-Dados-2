@@ -10,19 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Execute a ação desejada com base no ID do card
             switch (cardId) {
-                case 'adicionarLaboratorio':
-                    // Redirecione para a página de adicionar laboratório
-                    window.location.href = 'adicionar_laboratorio.html';
-                    break;
-                case 'removerLaboratorio':
-                    // Redirecione para a página de remover laboratório
-                    window.location.href = 'remover_laboratorio.html';
-                    break;
                 case 'desbloquearLaboratorio':
                     window.location.href = 'desbloquear_lab.html';
                     break;
                 case 'bloquearLaboratorio':
                     window.location.href = 'bloquear_lab.html';
+                    break;
+                case 'entregar-chave':
+                    window.location.href = 'entregar_chave.html';
+                    break;
+                case 'receber-chave':
+                    window.location.href = "receber_chave.html";
                     break;
                 default:
                     break;

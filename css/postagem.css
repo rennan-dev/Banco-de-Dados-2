@@ -1,0 +1,22 @@
+.postagem {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.postagem .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.postagem .info .usuario {
+    font-weight: bold;
+}
+
+.postagem .info .data {
+    font-size: 0.8em;
+    color: #666;
+}
