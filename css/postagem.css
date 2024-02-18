@@ -1,22 +1,33 @@
-.postagem {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-.postagem .info {
+.main-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: center; /* Centralizar conteúdo horizontalmente */
+    padding-top: 20px; /* Adicionar um espaçamento superior opcional */
 }
 
-.postagem .info .usuario {
-    font-weight: bold;
+.wrapper {
+    width: 100%; /* Garantir que a largura do wrapper seja 100% */
+    max-width: 800px; /* Definir uma largura máxima para evitar que o conteúdo fique muito largo em telas grandes */
 }
 
-.postagem .info .data {
-    font-size: 0.8em;
-    color: #666;
+.post-form {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* Adicione uma cor de fundo opcional */
+    padding: 20px;
+    margin-bottom: 0; /* Adicione uma margem inferior opcional para separar as postagens */
+    width: 100%; /* Garantir que o formulário de postagem ocupe toda a largura do wrapper */
+    z-index: 100; /* Certifique-se de que o formulário esteja acima de outros elementos */
+}
+
+.post-form textarea {
+    resize: none !important;
+}
+
+
+#postagens-container {
+    width: 100%; /* Garantir que o contêiner de postagens ocupe toda a largura do wrapper */
+    max-height: 70vh; /* Definir uma altura máxima para o contêiner de postagens para permitir rolagem */
+    overflow-y: auto; /* Adicionar rolagem vertical automática quando necessário */
+    padding: 10px;
 }

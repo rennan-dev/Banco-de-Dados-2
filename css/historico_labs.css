@@ -1,0 +1,41 @@
+.card-historico {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.search-container {
+    margin-bottom: 20px;
+}
+.search-container label {
+    font-weight: bold;
+}
+.search-container input[type="date"] {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.search-container button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+.search-container button:hover {
+    background-color: #45a049;
+}
+#resultado-pesquisa {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 400px; /* Defina a altura máxima desejada */
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+}
+#resultado-pesquisa p {
+    margin: 5px 0;
+}

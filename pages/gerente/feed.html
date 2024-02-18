@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerente</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/index.css">
     <link rel="stylesheet" href="../../css/barra-superior.css">
     <link rel="stylesheet" href="../../css/barra-lateral.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../css/postagem.css">
 </head>
 <body class="centralize">
-
 
     <header>
         <nav id="menu">
@@ -45,9 +46,9 @@
                             <i class='bx bx-rss icon'></i>
                             <span class="text nav-text">Feed</span>
                         </a>
-                    </li> 
+                    </li>  
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="historico_labs.html">
                             <i class='bx bx-time icon' ></i>
                             <span class="text nav-text">Histórico Lab(s)</span>
                         </a>
@@ -75,32 +76,31 @@
         </div>
         </nav>
         <!--Barra lateral End-->
+
+    <main class="main-content">
+
+        <div class="wrapper">
+            <div class="post-form">
+                <h2>Faça sua postagem:</h2>
+                <textarea id="post-content" rows="4" placeholder="Escreva sua postagem aqui..."></textarea>
+                <button id="btn-post">Publicar</button>
+            </div>
     
-    <main>
-        <div class="card">
-            <h1>Desbloquear Laboratório</h1>
-    
-            <form id="desbloquear-lab">
-                <label for="sala">Sala:</label><br>
-                <input type="number" name="sala" id="sala"><br><br>
-    
-                <label for="bloco">Bloco:</label><br>
-                <input type="text" name="bloco" id="bloco"><br><br>
-    
-                <button type="submit" class="enviar" id="botao-add-lab">Desbloquear</button><br>
-            </form>
+            <div id="postagens-container"></div>
         </div>
+
     </main>
-    
+
     <script src="../../scripts/loading.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="../../scripts/firebase-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
     <script src="../../scripts/barra-superior.js"></script>
     <script src="../../scripts/barra-lateral.js"></script>
-    <script src="../../scripts/gerente/gerente_cards.js"></script>
-    <script src="../../scripts/gerente/desbloquear_lab.js"></script>
+    <script src="../../scripts/usuario/postagem.js"></script>
     <script src="../../scripts/alterar_senha.js"></script>
 </body>
 </html>

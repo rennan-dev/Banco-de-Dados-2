@@ -113,3 +113,68 @@ main h2 {
     font-size: 0.8em;
     color: #666;
 }
+
+
+/*Card de apagar usuario*/
+.card-apagar {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Estilos para o cartão de exclusão de usuário */
+
+.card-apagar {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-apagar {
+    text-align: center;
+}
+
+/* Estilos para o título */
+.card-apagar h1 {
+    margin-bottom: 20px;
+}
+
+/* Estilos para o formulário */
+#form-excluir-usuario {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Estilos para as etiquetas de entrada */
+#form-excluir-usuario label {
+    margin-bottom: 10px;
+}
+
+/* Estilos para as entradas */
+#form-excluir-usuario input[type="email"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+/* Estilos para o botão de exclusão */
+#form-excluir-usuario button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#form-excluir-usuario button[type="submit"]:hover {
+    background-color: #45a049;
+}

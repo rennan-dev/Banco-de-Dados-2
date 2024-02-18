@@ -1,3 +1,10 @@
+function getCurrentTimeInManaus() {
+    // Definir o fuso horário para Manaus, AM
+    const manausTime = moment().tz("America/Manaus");
+    // Formatar a data e hora no formato desejado
+    return manausTime.format("DD/MM/YYYY HH:mm");
+}
+
 // Capturando o formulário
 const formEntregarChave = document.querySelector("#entregar-chave");
 
@@ -25,7 +32,7 @@ function verificarExistenciaESalaDisponivel(sala, bloco, email) {
                 const laboratorio = snapshot.val()[Object.keys(snapshot.val())[0]];
                 if (laboratorio.disponibilidade === "Disponível") {
                     if (laboratorio.portadorChaves === "Guarita") {
-                        verificarEmail(email, sala);
+                        verificarEmail(email, sala, bloco);
                     } else {
                         alert('A chave está com outro usuário. Não é possível entregar a chave.');
                     }
@@ -41,9 +48,8 @@ function verificarExistenciaESalaDisponivel(sala, bloco, email) {
         });
 }
 
-
 // Função para verificar o e-mail
-function verificarEmail(email, sala) {
+function verificarEmail(email, sala, bloco) {
     // Verificando se o e-mail é o e-mail do admin
     if (email === "rennansouzaalves@gmail.com") {
         alert("O e-mail do administrador não pode ser utilizado para pegar a chave.");
@@ -58,35 +64,55 @@ function verificarEmail(email, sala) {
             if (snapshot.exists()) {
                 const usuario = snapshot.val()[Object.keys(snapshot.val())[0]];
                 const nomeUsuario = usuario.nome;
-                // Atualizar o portadorChaves para o nome do usuário
-                firebase.database().ref('laboratorios')
-                    .orderByChild('sala')
-                    .equalTo(sala)
-                    .once('value')
-                    .then((snapshot) => {
-                        if (snapshot.exists()) {
-                            const laboratorioId = Object.keys(snapshot.val())[0];
-                            firebase.database().ref('laboratorios/' + laboratorioId).update({
-                                portadorChaves: nomeUsuario
-                            }).then(() => {
-                                alert('Chave entregue com sucesso para ' + nomeUsuario);
-                                formEntregarChave.reset();
-                            }).catch((error) => {
-                                console.error('Erro ao atualizar o portadorChaves:', error);
-                                alert('Erro ao entregar a chave. Por favor, tente novamente.');
-                            });
-                        } else {
-                            alert('Sala não encontrada no banco de dados.');
-                        }
-                    }).catch((error) => {
-                        console.error('Erro ao buscar a sala:', error);
-                        alert('Erro ao entregar a chave. Por favor, tente novamente.');
-                    });
+                // Entregar a chave
+                entregarChave(email, nomeUsuario, sala, bloco);
             } else {
                 alert('E-mail não encontrado no banco de dados.');
             }
         }).catch((error) => {
             console.error('Erro ao verificar o e-mail:', error);
+            alert('Erro ao entregar a chave. Por favor, tente novamente.');
+        });
+}
+
+// Função para entregar a chave e registrar no histórico de chaves
+function entregarChave(email, nomeUsuario, sala, bloco) {
+    const dataEntrega = getCurrentTimeInManaus(); // Obtém a data e hora atuais
+
+    // Atualizar o portadorChaves para o nome do usuário
+    firebase.database().ref('laboratorios')
+        .orderByChild('sala')
+        .equalTo(sala)
+        .once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const laboratorioId = Object.keys(snapshot.val())[0];
+                firebase.database().ref('laboratorios/' + laboratorioId).update({
+                    portadorChaves: nomeUsuario
+                }).then(() => {
+                    // Registrar no histórico de chaves
+                    firebase.database().ref('historico_chaves').push({
+                        usuarioEntrega: firebase.auth().currentUser.displayName,
+                        usuarioRecebimento: nomeUsuario,
+                        sala: sala,
+                        bloco: bloco, // Incluindo o bloco da sala
+                        dataEntrega: dataEntrega
+                    }).then(() => {
+                        alert('Chave entregue com sucesso para ' + nomeUsuario);
+                        formEntregarChave.reset();
+                    }).catch((error) => {
+                        console.error('Erro ao registrar no histórico de chaves:', error);
+                        alert('Erro ao entregar a chave. Por favor, tente novamente.');
+                    });
+                }).catch((error) => {
+                    console.error('Erro ao atualizar o portadorChaves:', error);
+                    alert('Erro ao entregar a chave. Por favor, tente novamente.');
+                });
+            } else {
+                alert('Sala não encontrada no banco de dados.');
+            }
+        }).catch((error) => {
+            console.error('Erro ao buscar a sala:', error);
             alert('Erro ao entregar a chave. Por favor, tente novamente.');
         });
 }

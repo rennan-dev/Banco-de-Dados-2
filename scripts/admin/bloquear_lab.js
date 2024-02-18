@@ -19,22 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     const lab = childSnapshot.val();
                     if (lab.bloco === bloco) {
                         laboratorioEncontrado = true;
-                        // Aqui você pode fazer o que desejar com o laboratório encontrado
-                        console.log('Laboratório encontrado:', lab);
-                        // Por exemplo, você pode bloquear o laboratório aqui
-                        if (lab.disponibilidade === 'Disponível') {
-                            // Atualiza a disponibilidade para 'Indisponível'
-                            childSnapshot.ref.update({ disponibilidade: 'Indisponível' })
-                            .then(() => {
-                                alert('Laboratório bloqueado com sucesso!');
-                                form.reset();
-                            })
-                            .catch(error => {
-                                console.error('Erro ao bloquear laboratório:', error);
-                                alert('Erro ao bloquear laboratório. Verifique o console para mais detalhes.');
-                            });
+                        // Verifica se a chave está na "Guarita" antes de bloquear o laboratório
+                        if (lab.portadorChaves === 'Guarita') {
+                            if (lab.disponibilidade === 'Disponível') {
+                                // Atualiza a disponibilidade para 'Indisponível'
+                                childSnapshot.ref.update({ disponibilidade: 'Indisponível' })
+                                .then(() => {
+                                    alert('Laboratório bloqueado com sucesso!');
+                                    form.reset();
+                                })
+                                .catch(error => {
+                                    console.error('Erro ao bloquear laboratório:', error);
+                                    alert('Erro ao bloquear laboratório. Verifique o console para mais detalhes.');
+                                });
+                            } else {
+                                alert('O laboratório já está bloqueado.');
+                            }
                         } else {
-                            alert('O laboratório já está bloqueado.');
+                            alert('A chave do laboratório não está na "Guarita". Não é possível bloquear o laboratório.');
                         }
                     }
                 });

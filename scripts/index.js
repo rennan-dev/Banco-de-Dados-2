@@ -33,6 +33,7 @@ function login(event) {
 
     // Verificar se é o email e senha do administrador
     if (email === "rennansouzaalves@gmail.com" && password === "123123") {
+        localStorage.setItem('adminUserId', 'admin');
         // Redirecionar diretamente para a página do administrador
         window.location.href = "../pages/admin/index.html";
         return; // Encerrar a função para evitar a execução do restante do código

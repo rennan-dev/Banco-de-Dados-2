@@ -94,7 +94,11 @@ function register() {
         })
         .then(() => {
             hideLoading();
-            window.location.href = "../pages/usuario/index.html";
+            if (typeAccount === 'docente') {
+                window.location.href = "../pages/gerente/index.html";
+            } else {
+                window.location.href = "../pages/usuario/index.html";
+            }
         })
         .catch((error) => {
             hideLoading();
