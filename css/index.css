@@ -4,16 +4,15 @@ main {
 
 .row {
     display: flex;
-    justify-content: space-between; /* Distribui o espaço igualmente entre as colunas */
+    justify-content: space-between; 
 }
 
 .column {
-    width: 48%; /* Cada coluna ocupará cerca de metade da largura da tela, com espaço entre elas */
+    width: 48%; 
 }
 
-/* Define o estilo dos cards */
 .card {
-    width: 100%; /* Define a largura dos cards para ocupar todo o espaço disponível na coluna */
+    width: 100%; 
     max-height: 100px;
     padding: 40px;
     margin: 15px auto;
@@ -21,14 +20,14 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    display: flex; /* Utilize flexbox para alinhar verticalmente */
+    display: flex; 
     text-align: center;
-    align-items: center; /* Centralize verticalmente */
+    align-items: center;
 }
 
 
 .card-labs {
-    width: 700px; /* Mantenha a largura desejada */
+    width: 700px; 
     margin: 100px auto; /* Ajuste a margem para centralizar verticalmente e mover para a esquerda */
     padding: 30px;
     text-align: center;
@@ -41,8 +40,8 @@ main {
 
 
 .card-labs #lista-laboratorios {
-    max-height: 150px; /* Defina o limite de altura desejado */
-    overflow-y: auto; /* Habilita a rolagem vertical */
+    max-height: 150px; 
+    overflow-y: auto;
 }
 
 main h2 {
@@ -52,9 +51,9 @@ main h2 {
 
 /*Postagens*/
 .post-form {
-    width: 80%; /* Largura do formulário */
-    max-width: 700px; /* Largura máxima do formulário */
-    margin: 0 auto; /* Centralizar horizontalmente */
+    width: 80%; 
+    max-width: 700px; 
+    margin: 0 auto; 
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 20px;
@@ -77,7 +76,7 @@ main h2 {
 }
 
 #btn-post {
-    width: 100%; /* Botão de largura total */
+    width: 100%; 
     background-color: #695cfe;
     color: #fff;
     padding: 10px;

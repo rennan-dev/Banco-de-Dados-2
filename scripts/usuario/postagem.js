@@ -1,8 +1,5 @@
-// Função para obter a data e hora atual em Manaus, AM e formatá-la
 function getCurrentTimeInManaus() {
-    // Definir o fuso horário para Manaus, AM
     const manausTime = moment().tz("America/Manaus");
-    // Formatar a data e hora no formato desejado
     return manausTime.format("DD/MM/YYYY HH:mm");
 }
 
@@ -10,7 +7,7 @@ function getCurrentTimeInManaus() {
 function postarEMostrarPostagens() {
     const postContent = document.getElementById("post-content").value;
     const userName = firebase.auth().currentUser.displayName;
-    const postTime = getCurrentTimeInManaus(); // Obter a data e hora atual em Manaus, AM formatada
+    const postTime = getCurrentTimeInManaus(); 
 
     // Enviar a postagem para o banco de dados
     firebase.database().ref("posts").push({
@@ -46,7 +43,6 @@ function mostrarTodasPostagens() {
     });
 }
 
-// Função para exibir as postagens no contêiner especificado
 function mostrarPostagens(postagens) {
     const postagensContainer = document.getElementById('postagens-container');
     postagensContainer.innerHTML = ''; // Limpar o conteúdo atual das postagens
@@ -68,10 +64,8 @@ function mostrarPostagens(postagens) {
     }
 }
 
-// Event listener para o botão de publicar
 document.getElementById("btn-post").addEventListener("click", postarEMostrarPostagens);
 
-// Chamada inicial para mostrar todas as postagens ao carregar a página
 mostrarTodasPostagens();
 
 // Função para carregar mais postagens conforme o usuário rola a página para baixo
@@ -95,7 +89,6 @@ function carregarMaisPostagens() {
                 dataHora: childData.timestamp
             });
         });
-        // Ordenar as postagens da mais recente para a mais antiga
         postagens.sort((a, b) => (new Date(b.dataHora).getTime() - new Date(a.dataHora).getTime()));
         mostrarPostagens(postagens);
     });

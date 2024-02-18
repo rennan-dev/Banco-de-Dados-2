@@ -33,8 +33,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    max-height: 400px; /* Defina a altura máxima desejada */
-    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+    max-height: 400px; 
+    overflow-y: auto; 
 }
 #resultado-pesquisa p {
     margin: 5px 0;

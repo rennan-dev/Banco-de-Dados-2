@@ -1,11 +1,8 @@
-// Capturando o formulário
 const formReceberChave = document.querySelector("#receber-chave");
 
-// Adicionando um evento de envio ao formulário
 formReceberChave.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Capturando os valores dos campos
     const sala = document.querySelector("#sala").value;
     const bloco = document.querySelector("#bloco").value;
 

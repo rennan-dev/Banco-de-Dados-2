@@ -9,7 +9,6 @@
 }
 
 :root{
-    /* ===== Colors ===== */
     --body-color: #E4E9F7;
     --sidebar-color: #FFF;
     --primary-color: #695CFE;
@@ -17,7 +16,6 @@
     --toggle-color: #DDD;
     --text-color: #707070;
 
-    /* ====== Transition ====== */
     --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
     --tran-04: all 0.3s ease;
@@ -35,7 +33,6 @@ body{
     color: #fff;
 }
 
-/* ===== Sidebar ===== */
 .sidebar {
     position: fixed;
     top: 60px;
@@ -52,7 +49,6 @@ body{
     width: 88px;
 }
 
-/* ===== Reusable code - Here ===== */
 .sidebar li{
     height: 50px;
     list-style: none;
@@ -92,7 +88,6 @@ body{
 .sidebar.close .text{
     opacity: 0;
 }
-/* =========================== */
 
 .sidebar .header-sidebar{
     position: relative;

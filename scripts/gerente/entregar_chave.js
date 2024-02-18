@@ -1,18 +1,12 @@
 function getCurrentTimeInManaus() {
-    // Definir o fuso horário para Manaus, AM
     const manausTime = moment().tz("America/Manaus");
-    // Formatar a data e hora no formato desejado
     return manausTime.format("DD/MM/YYYY HH:mm");
 }
 
-// Capturando o formulário
 const formEntregarChave = document.querySelector("#entregar-chave");
 
-// Adicionando um evento de envio ao formulário
 formEntregarChave.addEventListener("submit", function(event) {
     event.preventDefault();
-
-    // Capturando os valores dos campos
     const sala = document.querySelector("#sala").value;
     const bloco = document.querySelector("#bloco").value;
     const email = document.querySelector("#email").value;

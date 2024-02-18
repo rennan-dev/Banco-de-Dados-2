@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+    <title>Lab Controle</title>
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/index.css">
     <link rel="stylesheet" href="../../css/barra-superior.css">
     <link rel="stylesheet" href="../../css/barra-lateral.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../css/postagem.css">
 </head>
 <body class="centralize">
+
 
     <header>
         <nav id="menu">
@@ -22,8 +21,8 @@
         </nav>
     </header>
 
-     <!--Barra lateral Start-->
-     <nav class="sidebar close">
+    <!--Barra lateral Start-->
+    <nav class="sidebar close">
         <div class="header-sidebar">
             <div class="image-text">
                 <div class="text logo-text">
@@ -70,31 +69,27 @@
         </div>
         </nav>
         <!--Barra lateral End-->
-
-        <main class="main-content">
     
-            <div class="wrapper">
-                <div class="post-form">
-                    <h2>Faça sua postagem:</h2>
-                    <textarea id="post-content" rows="4" placeholder="Escreva sua postagem aqui..."></textarea>
-                    <button id="btn-post">Publicar</button>
-                </div>
-        
-                <div id="postagens-container"></div>
-            </div>
-
-        </main>
-
+    <main>
+        <div class="card">
+            <h1>Novo Nome</h1><br>
+    
+            <form id="form-novo-nome">
+                <input type="text" name="novo-nome" id="novo-nome"><br><br>
+    
+                <button type="submit" class="enviar" id="botao-novo-nome">Alterar</button><br>
+            </form>
+        </div>
+    </main>
+    
     <script src="../../scripts/loading.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="../../scripts/firebase-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
     <script src="../../scripts/barra-superior.js"></script>
     <script src="../../scripts/barra-lateral.js"></script>
-    <script src="../../scripts/usuario/postagem.js"></script>
+    <script src="../../scripts/gerente/alterar_nome.js"></script>
     <script src="../../scripts/alterar_senha.js"></script>
 </body>
 </html>

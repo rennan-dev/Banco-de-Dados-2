@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtenha uma referência para o banco de dados do Firebase
-    const database = firebase.database();
+   const database = firebase.database();
 
     // Obtenha uma referência para o formulário
     const form = document.getElementById('add-lab');

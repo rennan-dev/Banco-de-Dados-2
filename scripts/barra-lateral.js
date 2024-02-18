@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
         sidebar.classList.toggle("close");
     });
 
-    // Mova a declaração da variável searchBtn para dentro deste escopo
     const searchBtn = document.querySelector(".search-box");
 
     document.addEventListener("click", (event) => {

@@ -1,33 +1,27 @@
-/* Estilo para remover a bolinha dos elementos <li> */
 #lista-laboratorios {
     list-style-type: none;
 }
 
-/* Estilo para cada item da lista */
 #lista-laboratorios li {
-    display: flex; /* Usa flexbox para alinhar os itens */
-    justify-content: space-between; /* Distribui os itens uniformemente ao longo do espaço disponível */
-    align-items: center; /* Alinha verticalmente os itens */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 0; /* Adiciona espaçamento interno superior e inferior */
 }
 
-/* Estilo para a sala e o bloco */
 #lista-laboratorios .laboratorio-info {
     flex: 1; /* Permite que a sala e o bloco ocupem o máximo de espaço disponível */
-    text-align: left; /* Alinha o texto à esquerda */
+    text-align: left; 
 }
 
-/* Estilo para a disponibilidade */
 #lista-laboratorios .disponibilidade {
-    margin-left: 20px; /* Adiciona margem à esquerda para separação */
+    margin-left: 20px; 
 }
 
-/* Estilo para disponibilidade azul */
 .disponivel {
     color: blue;
 }
 
-/* Estilo para disponibilidade vermelha */
 .indisponivel {
     color: red;
 }
