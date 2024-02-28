@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh; /* Garante que o main ocupe toda a altura da tela */
 }
 
 body {
@@ -86,4 +87,18 @@ a {
     width: 100%;
     font-size: 24pt;
     color: white;
+}
+
+/* Footer */
+footer {
+    background: #0f0f0f; 
+    color: white;
+    text-align: center;
+    padding: 20px; 
+    margin-top: 50px;
+}
+
+.container-footer {
+    max-width: 1200px; 
+    margin: 0 auto; 
 }

@@ -11,7 +11,9 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../css/postagem.css">
 </head>
-<body class="centralize">
+<body>
+
+    <div class="centralize">
 
     <header>
         <nav id="menu">
@@ -46,27 +48,21 @@
                             <i class='bx bx-rss icon'></i>
                             <span class="text nav-text">Feed</span>
                         </a>
-                    </li>                    
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Avisos</span>
-                        </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-user-check icon'></i>
+                        <a href="alterar_nome.html" id="alterar-nome-link">
+                            <i class='bx bx-user-circle icon'></i>
                             <span class="text nav-text">Alterar Nome</span>
                         </a>
-                    </li>                                       
+                    </li>                                  
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="#" id="alterar-senha-link">
                             <i class='bx bx-lock-alt icon' ></i>
                             <span class="text nav-text">Alterar Senha</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="apagar_usuario.html">
                             <i class='bx bx-trash icon' ></i>
                             <span class="text nav-text">Apagar Conta</span>
                         </a>
@@ -79,6 +75,7 @@
 
         <main class="main-content">
     
+            
             <div class="wrapper">
                 <div class="post-form">
                     <h2>Faça sua postagem:</h2>
@@ -86,10 +83,22 @@
                     <button id="btn-post">Publicar</button>
                 </div>
         
-                <div id="postagens-container"></div>
+                <div class="card-postagem">
+                    <div id="postagens-container"></div>
+                </div>
             </div>
 
         </main>
+
+    </div>
+
+    <footer id="footer">
+        <div class="container-footer">
+            <p id="contact">Instituto de Ciências Exatas e Tecnologia</p>
+            <p>Universidade Federal do Amazonas</p>
+            <p>Av. Nossa Senhora do Rosário, 3863 - Bairro Tiradentes, Itacoatiara</p>
+        </div>
+    </footer>
 
     <script src="../../scripts/loading.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -101,5 +110,6 @@
     <script src="../../scripts/barra-superior.js"></script>
     <script src="../../scripts/barra-lateral.js"></script>
     <script src="../../scripts/usuario/postagem.js"></script>
+    <script src="../../scripts/alterar_senha.js"></script>
 </body>
 </html>

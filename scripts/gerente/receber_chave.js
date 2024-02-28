@@ -1,11 +1,13 @@
-// Capturando o formulário
+function getCurrentTimeInManaus() {
+    const manausTime = moment().tz("America/Manaus");
+    return manausTime.format("DD/MM/YYYY HH:mm");
+}
+
 const formReceberChave = document.querySelector("#receber-chave");
 
-// Adicionando um evento de envio ao formulário
 formReceberChave.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Capturando os valores dos campos
     const sala = document.querySelector("#sala").value;
     const bloco = document.querySelector("#bloco").value;
 
@@ -39,6 +41,8 @@ function verificarChaveNaGuarita(sala, bloco) {
 
 // Função para receber a chave
 function receberChave(sala, bloco) {
+    const dataRecebimento = getCurrentTimeInManaus(); // Obtém a data e hora atuais
+    
     // Atualizar o portadorChaves para Guarita
     firebase.database().ref('laboratorios')
         .orderByChild('sala')
@@ -50,8 +54,19 @@ function receberChave(sala, bloco) {
                 firebase.database().ref('laboratorios/' + laboratorioId).update({
                     portadorChaves: "Guarita"
                 }).then(() => {
-                    alert('Chave recebida com sucesso pela Guarita.');
-                    formReceberChave.reset();
+                    // Registrar no histórico de chaves
+                    firebase.database().ref('historico_chaves').push({
+                        usuarioRecebimento: "Guarita", 
+                        sala: sala,
+                        bloco: bloco,
+                        dataEntrega: dataRecebimento
+                    }).then(() => {
+                        alert('Chave recebida com sucesso pela Guarita.');
+                        formReceberChave.reset();
+                    }).catch((error) => {
+                        console.error('Erro ao registrar no histórico de chaves:', error);
+                        alert('Erro ao receber a chave. Por favor, tente novamente.');
+                    });
                 }).catch((error) => {
                     console.error('Erro ao atualizar o portadorChaves:', error);
                     alert('Erro ao receber a chave. Por favor, tente novamente.');

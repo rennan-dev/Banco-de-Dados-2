@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Erro ao atualizar nome:', error);
-                alert('Erro ao atualizar nome. Verifique o console para mais detalhes.');
+                alert('Erro ao atualizar nome.');
             });
     });
 });

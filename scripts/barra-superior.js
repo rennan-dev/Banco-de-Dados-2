@@ -18,7 +18,6 @@ firebase.auth().onAuthStateChanged(user => {
                 console.error('Erro ao recuperar o nome do usuário:', error);
             });
     } else {
-        // Se o usuário não estiver autenticado, você pode limpar ou ocultar o nome do usuário na página
         atualizarNomeUsuario('');
     }
 });

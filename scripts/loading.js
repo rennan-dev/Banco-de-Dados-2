@@ -1,3 +1,5 @@
+//Script para ficar em uma tela de carregamento enquanto a página é carregada
+
 function showLoading() {
     const div = document.createElement("div");
     div.classList.add("loading", "centralize");

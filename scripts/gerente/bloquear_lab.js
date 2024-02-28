@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const lab = childSnapshot.val();
                     if (lab.bloco === bloco) {
                         laboratorioEncontrado = true;
-                        // Aqui você pode fazer o que desejar com o laboratório encontrado
                         console.log('Laboratório encontrado:', lab);
-                        // Por exemplo, você pode bloquear o laboratório aqui
                         if (lab.disponibilidade === 'Disponível') {
                             // Atualiza a disponibilidade para 'Indisponível'
                             childSnapshot.ref.update({ disponibilidade: 'Indisponível' })

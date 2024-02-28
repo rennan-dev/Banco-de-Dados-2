@@ -1,25 +1,3 @@
-/*var botaoEntrar = document.getElementById("botaoEntrar");
-botaoEntrar.addEventListener("click", login);
-
-function login(event) {
-    showLoading();
-
-    event.preventDefault(); // Evita que o formulário seja submetido normalmente
-
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(response => {
-        hideLoading();
-        window.location.href = "../pages/usuario/index.html"; // Redireciona após o login bem-sucedido
-    })
-    .catch(error => {
-        hideLoading();
-        alert(getErrorMessage(error));
-    });
-}*/
-
 var botaoEntrar = document.getElementById("botaoEntrar");
 botaoEntrar.addEventListener("click", login);
 

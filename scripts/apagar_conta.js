@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const user = firebase.auth().currentUser;
 
-        // Confirmar se o usuário realmente deseja excluir sua conta
         const confirmarExclusao = confirm("Tem certeza que deseja excluir sua conta? Esta ação é irreversível.");
 
         if (confirmarExclusao) {
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch((error) => {
                     // Lidar com erros durante a exclusão da conta ou remoção de dados do banco de dados
                     console.error("Erro ao excluir conta ou remover dados do usuário:", error);
-                    alert("Erro ao excluir conta ou remover dados do usuário. Verifique o console para mais detalhes.");
+                    alert("Erro ao excluir conta ou remover dados do usuário.");
                 });
         }
     });
