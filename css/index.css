@@ -97,6 +97,16 @@ main h2 {
     margin-bottom: 15px;
 }
 
+.foto-perfil {
+    width: 60px; /* Tamanho desejado da foto de perfil */
+    height: 60px; /* Tamanho desejado da foto de perfil */
+    border-radius: 50%; /* Para tornar a foto de perfil redonda */
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px; /* Espaçamento entre a foto de perfil e o texto */
+    float: left; /* Para alinhar a foto de perfil ao lado do texto */
+}
+
 .postagem .info {
     display: flex;
     justify-content: space-between;

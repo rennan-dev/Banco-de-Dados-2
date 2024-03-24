@@ -18,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'receber-chave':
                     window.location.href = "receber_chave.html";
                     break;
+                case 'permitirAcesso':
+                    window.location.href = 'permitir_acesso.html';
+                    break;
+                case 'negarAcesso':
+                    window.location.href = 'negar_acesso.html';
+                    break;
                 default:
                     break;
             }

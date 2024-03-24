@@ -87,3 +87,15 @@ a {
     font-size: 24pt;
     color: white;
 }
+
+/*foto de perfil*/
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: auto; /* Adiciona margem automática para centralização horizontal */
+    display: block; /* Garante que o elemento seja tratado como um bloco */
+}
+

@@ -22,7 +22,10 @@ function login(event) {
         .then(response => {
             // Após o login bem-sucedido, recuperar o usuário autenticado
             var user = response.user;
-            
+
+            // Armazenar o ID do usuário no localStorage
+            localStorage.setItem('currentUserId', user.uid);
+
             // Recupere o tipo de conta do banco de dados
             firebase.database().ref('usuarios/' + user.uid + '/tipo_conta').once('value')
                 .then((snapshot) => {
@@ -50,6 +53,7 @@ function login(event) {
             alert(getErrorMessage(error));
         });
 }
+
 
 function getErrorMessage(error) {
     if(error.code == "auth/user-not-found") {

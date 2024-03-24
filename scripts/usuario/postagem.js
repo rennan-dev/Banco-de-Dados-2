@@ -7,21 +7,33 @@ function getCurrentTimeInManaus() {
 function postarEMostrarPostagens() {
     const postContent = document.getElementById("post-content").value;
     const userName = firebase.auth().currentUser.displayName;
+    const userUID = firebase.auth().currentUser.uid; // Obter o UID do usuário
     const postTime = getCurrentTimeInManaus(); 
 
-    // Enviar a postagem para o banco de dados
-    firebase.database().ref("posts").push({
-        author: userName,
-        content: postContent,
-        timestamp: postTime
-    }).then(function() {
-        console.log("Postagem enviada com sucesso!");
-        // Limpar o campo de texto após a postagem ser enviada
-        document.getElementById("post-content").value = "";
-        // Após a postagem ser enviada com sucesso, buscar e mostrar as postagens atualizadas
-        mostrarTodasPostagens();
-    }).catch(function(error) {
-        console.error("Erro ao enviar a postagem:", error);
+    // Recuperar a foto de perfil do usuário do banco de dados
+    firebase.database().ref('usuarios').child(userUID).once('value')
+    .then(snapshot => {
+        const userData = snapshot.val();
+        const fotoPerfilBase64 = userData.fotoPerfilBase64;
+
+        // Enviar a postagem para o banco de dados
+        firebase.database().ref("posts").push({
+            author: userName,
+            photoURL: fotoPerfilBase64, // Utiliza a foto de perfil do usuário
+            content: postContent,
+            timestamp: postTime
+        }).then(function() {
+            console.log("Postagem enviada com sucesso!");
+            // Limpar o campo de texto após a postagem ser enviada
+            document.getElementById("post-content").value = "";
+            // Após a postagem ser enviada com sucesso, buscar e mostrar as postagens atualizadas
+            mostrarTodasPostagens();
+        }).catch(function(error) {
+            console.error("Erro ao enviar a postagem:", error);
+        });
+    })
+    .catch(error => {
+        console.error('Erro ao obter foto de perfil do usuário:', error);
     });
 }
 
@@ -33,6 +45,7 @@ function mostrarTodasPostagens() {
             const childData = childSnapshot.val();
             postagens.push({
                 usuario: childData.author,
+                photoURL: childData.photoURL, // Adicionando a URL da foto de perfil
                 conteudo: childData.content,
                 dataHora: childData.timestamp
             });
@@ -50,11 +63,16 @@ function mostrarPostagens(postagens) {
     // Iterar sobre as postagens de trás para frente e criar elementos HTML para cada uma
     for (let i = postagens.length - 1; i >= 0; i--) {
         const postagem = postagens[i];
+        const fotoPerfilURL = postagem.photoURL || '../../img/trabalho-programa.png'; // URL padrão da foto de perfil
+
         const postagemHTML = `
             <div class="postagem">
                 <div class="info">
-                    <span class="usuario">${postagem.usuario}</span>
-                    <span class="data">${postagem.dataHora}</span>
+                    <div class="foto-perfil" style="background-image: url(${fotoPerfilURL})"></div> <!-- Adiciona a foto de perfil -->
+                    <div class="info-text">
+                        <span class="usuario">${postagem.usuario}</span>
+                        <span class="data">${postagem.dataHora}</span>
+                    </div>
                 </div>
                 <p>${postagem.conteudo}</p>
             </div>
@@ -77,6 +95,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
+
 // Função para carregar mais postagens
 function carregarMaisPostagens() {
     firebase.database().ref("posts").once("value", function(snapshot) {
@@ -85,6 +104,7 @@ function carregarMaisPostagens() {
             const childData = childSnapshot.val();
             postagens.push({
                 usuario: childData.author,
+                photoURL: childData.photoURL, // Adicionando a URL da foto de perfil
                 conteudo: childData.content,
                 dataHora: childData.timestamp
             });

@@ -49,7 +49,7 @@
                     <li class="nav-link">
                         <a href="alterar_nome.html" id="alterar-nome-link">
                             <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Alterar Nome</span>
+                            <span class="text nav-text">Perfil</span>
                         </a>
                     </li>                                  
                     <li class="nav-link">
@@ -70,9 +70,9 @@
         </nav>
         <!--Barra lateral End-->
     
-    <main>
+    <!-- <main>
         <div class="card">
-            <h1>Novo Nome</h1><br>
+            <h1>Perfil</h1><br>
     
             <form id="form-novo-nome">
                 <input type="text" name="novo-nome" id="novo-nome"><br><br>
@@ -80,8 +80,20 @@
                 <button type="submit" class="enviar" id="botao-novo-nome">Alterar</button><br>
             </form>
         </div>
-    </main>
+    </main> -->
     
+    
+    <main>
+        <div class="card">
+            <h1>Perfil</h1>            
+            <div class="header-sidebar">
+                <span id="user-name">Nome do Usuário</span>    
+            </div>
+        </div>
+    </main>
+      
+    
+
     <script src="../../scripts/loading.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
@@ -89,7 +101,8 @@
     <script src="../../scripts/firebase-init.js"></script>
     <script src="../../scripts/barra-superior.js"></script>
     <script src="../../scripts/barra-lateral.js"></script>
-    <script src="../../scripts/gerente/alterar_nome.js"></script>
+    <!-- <script src="../../scripts/gerente/alterar_nome.js"></script> -->
     <script src="../../scripts/alterar_senha.js"></script>
+    <script src="../../scripts/segunda-parte/perfil.js"></script>
 </body>
 </html>

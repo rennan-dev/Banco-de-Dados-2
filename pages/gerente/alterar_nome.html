@@ -55,7 +55,7 @@
                     <li class="nav-link">
                         <a href="alterar_nome.html" id="alterar-nome-link">
                             <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Alterar Nome</span>
+                            <span class="text nav-text">Perfil</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -78,15 +78,23 @@
     
     <main>
         <div class="card">
-            <h1>Novo Nome</h1><br>
-    
+            <h1>Perfil</h1><br>
+        
+            <form id="form-nova-foto-perfil">
+                <div id="foto-perfil" class="foto-perfil centralize" style="cursor: pointer;" title="Clique para alterar a imagem"></div>
+                <div id="nome-usuario" class="centralize"></div>
+                <input type="file" accept="image/*" id="nova-foto-perfil" style="display: none;"><br><br>
+
+                <button type="submit" class="enviar" id="botao-nova-foto-perfil" style="display: none;">Alterar Foto de Perfil</button>
+            </form>
             <form id="form-novo-nome">
-                <input type="text" name="novo-nome" id="novo-nome"><br><br>
+                <input type="text" name="novo-nome" id="novo-nome" placeholder="Novo nome de usuário" style="text-align: center;"><br><br>
     
-                <button type="submit" class="enviar" id="botao-novo-nome">Alterar</button><br>
+                <button type="submit" class="enviar" id="botao-novo-nome">Alterar Nome</button><br>
             </form>
         </div>
     </main>
+        
     
     <script src="../../scripts/loading.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
