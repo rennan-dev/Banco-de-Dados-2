@@ -1,64 +1,22 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const formEntregarChave = document.querySelector("#entregar-chave");
+function getCurrentTimeInManaus() {
+    const manausTime = moment().tz("America/Manaus");
+    return manausTime.format("DD/MM/YYYY HH:mm");
+}
 
-    formEntregarChave.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const sala = document.querySelector("#sala").value;
-        const bloco = document.querySelector("#bloco").value;
-        const email = document.querySelector("#email").value;
+const formEntregarChave = document.querySelector("#entregar-chave");
 
-        // Verificar se o registro do usuário existe na tabela acesso_chave
-        verificarExistenciaUsuario(sala, bloco, email);
-    });
+formEntregarChave.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const sala = document.querySelector("#sala").value;
+    const bloco = document.querySelector("#bloco").value;
+    const email = document.querySelector("#email").value;
 
-    // Função para verificar a existência do usuário na tabela acesso_chave
-    function verificarExistenciaUsuario(sala, bloco, email) {
-        firebase.database().ref('acesso_chave')
-            .orderByChild('email')
-            .equalTo(email)
-            .once('value')
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    // Se o usuário existe na tabela acesso_chave, verificar a disponibilidade da sala
-                    verificarDisponibilidadeSala(sala, bloco, email);
-                } else {
-                    alert('Usuário não encontrado na tabela de acesso à chave.');
-                }
-            }).catch((error) => {
-                console.error('Erro ao verificar o usuário:', error);
-                alert('Erro ao verificar o usuário. Por favor, tente novamente.');
-            });
-    }
+    // Verificando a existência da sala, a disponibilidade e o e-mail
+    verificarExistenciaESalaDisponivel(sala, bloco, email);
+});
 
-    // Função para verificar a disponibilidade da sala na tabela laboratorios
-    function verificarDisponibilidadeSala(sala, bloco, email) {
-        firebase.database().ref('laboratorios')
-            .orderByChild('sala')
-            .equalTo(sala)
-            .once('value')
-            .then((snapshot) => {
-                if (snapshot.exists()) {
-                    const laboratorio = snapshot.val()[Object.keys(snapshot.val())[0]];
-                    if (laboratorio.disponibilidade === "Disponível") {
-                        // Se a sala está disponível, entregar a chave
-                        entregarChave(sala, bloco, email);
-                    } else {
-                        alert('A sala está ocupada. Não é possível entregar a chave.');
-                    }
-                } else {
-                    alert('Sala não encontrada no banco de dados.');
-                }
-            }).catch((error) => {
-                console.error('Erro ao verificar a sala:', error);
-                alert('Erro ao verificar a sala. Por favor, tente novamente.');
-            });
-    }
-
- // Função para entregar a chave
-function entregarChave(sala, bloco, email) {
-    const dataEntrega = getCurrentTimeInManaus(); // Obtém a data e hora atuais
-
-    // Verificar se a chave está na guarita
+// Função para verificar a existência da sala, a disponibilidade e o e-mail
+function verificarExistenciaESalaDisponivel(sala, bloco, email) {
     firebase.database().ref('laboratorios')
         .orderByChild('sala')
         .equalTo(sala)
@@ -66,49 +24,116 @@ function entregarChave(sala, bloco, email) {
         .then((snapshot) => {
             if (snapshot.exists()) {
                 const laboratorio = snapshot.val()[Object.keys(snapshot.val())[0]];
-                if (laboratorio.portadorChaves === "Guarita") {
-                    // Obter o nome do usuário a partir do email
-                    firebase.database().ref('usuarios')
-                        .orderByChild('email')
-                        .equalTo(email)
-                        .once('value')
-                        .then((snapshot) => {
-                            if (snapshot.exists()) {
-                                const usuario = snapshot.val()[Object.keys(snapshot.val())[0]];
-                                const nomeUsuario = usuario.nome;
-
-                                // Atualizar o portadorChaves para o nome do usuário
-                                firebase.database().ref('laboratorios/' + Object.keys(snapshot.val())[0]).update({
-                                    portadorChaves: nomeUsuario
-                                }).then(() => {
-                                    // Registrar no histórico de chaves
-                                    firebase.database().ref('historico_chaves').push({
-                                        usuarioEntrega: firebase.auth().currentUser.displayName,
-                                        usuarioRecebimento: nomeUsuario,
-                                        sala: sala,
-                                        bloco: bloco, // Incluindo o bloco da sala
-                                        dataEntrega: dataEntrega
-                                    }).then(() => {
-                                        alert('Chave entregue com sucesso para ' + nomeUsuario);
-                                        formEntregarChave.reset();
-                                    }).catch((error) => {
-                                        console.error('Erro ao registrar no histórico de chaves:', error);
-                                        alert('Erro ao entregar a chave. Por favor, tente novamente.');
-                                    });
-                                }).catch((error) => {
-                                    console.error('Erro ao atualizar o portadorChaves:', error);
-                                    alert('Erro ao entregar a chave. Por favor, tente novamente.');
-                                });
-                            } else {
-                                alert('Nome de usuário não encontrado.');
-                            }
-                        }).catch((error) => {
-                            console.error('Erro ao buscar o nome do usuário:', error);
-                            alert('Erro ao entregar a chave. Por favor, tente novamente.');
-                        });
+                if (laboratorio.disponibilidade === "Disponível") {
+                    if (laboratorio.portadorChaves === "Guarita") {
+                        verificarEmail(email, sala, bloco);
+                    } else {
+                        alert('A chave está com outro usuário. Não é possível entregar a chave.');
+                    }
                 } else {
-                    alert('A chave não está na guarita. Não é possível entregar a chave.');
+                    alert('A sala está ocupada. Não é possível entregar a chave.');
                 }
+            } else {
+                alert('Sala não encontrada no banco de dados.');
+            }
+        }).catch((error) => {
+            console.error('Erro ao verificar a sala:', error);
+            alert('Erro ao entregar a chave. Por favor, tente novamente.');
+        });
+}
+
+// Função para verificar o e-mail
+function verificarEmail(email, sala, bloco) {
+    // Verificando se o e-mail é o e-mail do admin
+    if (email === "rennansouzaalves@gmail.com") {
+        alert("O e-mail do administrador não pode ser utilizado para pegar a chave.");
+        return;
+    }
+
+    firebase.database().ref('usuarios')
+        .orderByChild('email')
+        .equalTo(email)
+        .once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const usuario = snapshot.val()[Object.keys(snapshot.val())[0]];
+                const nomeUsuario = usuario.nome;
+                // Verificar se as informações existem na tabela acesso_chave
+                verificarExistenciaNaTabelaAcessoChave(email, nomeUsuario, sala, bloco);
+            } else {
+                alert('E-mail não encontrado no banco de dados.');
+            }
+        }).catch((error) => {
+            console.error('Erro ao verificar o e-mail:', error);
+            alert('Erro ao entregar a chave. Por favor, tente novamente.');
+        });
+}
+
+// Função para verificar a existência das informações na tabela acesso_chave
+// Função para verificar a existência das informações na tabela acesso_chave
+function verificarExistenciaNaTabelaAcessoChave(email, nomeUsuario, sala, bloco) {
+    firebase.database().ref('acesso_chave')
+        .orderByChild('email')
+        .equalTo(email)
+        .once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                let encontrou = false;
+                snapshot.forEach((childSnapshot) => {
+                    const acesso = childSnapshot.val();
+                    if (acesso.sala === sala && acesso.bloco === bloco) {
+                        encontrou = true;
+                    }
+                });
+                if (encontrou) {
+                    // Se as informações existem na tabela acesso_chave, entregar a chave
+                    entregarChave(email, nomeUsuario, sala, bloco);
+                } else {
+                    alert('As informações não foram encontradas na tabela de acesso à chave.');
+                }
+            } else {
+                alert('E-mail não encontrado na tabela de acesso à chave.');
+            }
+        }).catch((error) => {
+            console.error('Erro ao verificar a existência na tabela acesso_chave:', error);
+            alert('Erro ao entregar a chave. Por favor, tente novamente.');
+        });
+}
+
+
+// Função para entregar a chave e registrar no histórico de chaves
+function entregarChave(email, nomeUsuario, sala, bloco) {
+    const dataEntrega = getCurrentTimeInManaus(); // Obtém a data e hora atuais
+
+    // Atualizar o portadorChaves para o nome do usuário
+    firebase.database().ref('laboratorios')
+        .orderByChild('sala')
+        .equalTo(sala)
+        .once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const laboratorioId = Object.keys(snapshot.val())[0];
+                firebase.database().ref('laboratorios/' + laboratorioId).update({
+                    portadorChaves: nomeUsuario
+                }).then(() => {
+                    // Registrar no histórico de chaves
+                    firebase.database().ref('historico_chaves').push({
+                        usuarioEntrega: firebase.auth().currentUser.displayName,
+                        usuarioRecebimento: nomeUsuario,
+                        sala: sala,
+                        bloco: bloco, // Incluindo o bloco da sala
+                        dataEntrega: dataEntrega
+                    }).then(() => {
+                        alert('Chave entregue com sucesso para ' + nomeUsuario);
+                        formEntregarChave.reset();
+                    }).catch((error) => {
+                        console.error('Erro ao registrar no histórico de chaves:', error);
+                        alert('Erro ao entregar a chave. Por favor, tente novamente.');
+                    });
+                }).catch((error) => {
+                    console.error('Erro ao atualizar o portadorChaves:', error);
+                    alert('Erro ao entregar a chave. Por favor, tente novamente.');
+                });
             } else {
                 alert('Sala não encontrada no banco de dados.');
             }
@@ -117,12 +142,3 @@ function entregarChave(sala, bloco, email) {
             alert('Erro ao entregar a chave. Por favor, tente novamente.');
         });
 }
-
-
-
-    // Função para obter a data e hora atual em Manaus
-    function getCurrentTimeInManaus() {
-        const manausTime = moment().tz("America/Manaus");
-        return manausTime.format("DD/MM/YYYY HH:mm");
-    }
-});

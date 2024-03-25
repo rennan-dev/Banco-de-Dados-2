@@ -85,10 +85,20 @@
     
     <main>
         <div class="card">
-            <h1>Perfil</h1>            
-            <div class="header-sidebar">
-                <span id="user-name">Nome do Usuário</span>    
-            </div>
+            <h1>Perfil</h1><br>
+        
+            <form id="form-nova-foto-perfil">
+                <div id="foto-perfil" class="foto-perfil centralize" style="cursor: pointer;" title="Clique para alterar a imagem"></div>
+                <div id="nome-usuario" class="centralize"></div>
+                <input type="file" accept="image/*" id="nova-foto-perfil" style="display: none;"><br><br>
+
+                <button type="submit" class="enviar" id="botao-nova-foto-perfil" style="display: none;">Alterar Foto de Perfil</button>
+            </form>
+            <form id="form-novo-nome">
+                <input type="text" name="novo-nome" id="novo-nome" placeholder="Novo nome de usuário" style="text-align: center;"><br><br>
+    
+                <button type="submit" class="enviar" id="botao-novo-nome">Alterar Nome</button><br>
+            </form>
         </div>
     </main>
       
@@ -101,7 +111,7 @@
     <script src="../../scripts/firebase-init.js"></script>
     <script src="../../scripts/barra-superior.js"></script>
     <script src="../../scripts/barra-lateral.js"></script>
-    <!-- <script src="../../scripts/gerente/alterar_nome.js"></script> -->
+    <script src="../../scripts/gerente/alterar_nome.js"></script>
     <script src="../../scripts/alterar_senha.js"></script>
     <script src="../../scripts/segunda-parte/perfil.js"></script>
 </body>
